@@ -2,14 +2,13 @@
 
 namespace LaravelQueryFilter;
 
-use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
 use Illuminate\Pipeline\Pipeline;
 
 class FilterPipeline
 {
     private Filter $pipeline;
 
-    public function __construct(BuilderContract $builder, array $data)
+    public function __construct($builder, array $data)
     {
         $this->pipeline = app(Pipeline::class)
             ->send(new Filter($builder, $data))

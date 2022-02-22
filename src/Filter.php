@@ -2,19 +2,22 @@
 
 namespace LaravelQueryFilter;
 
-use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class Filter
 {
-    public BuilderContract $builder;
+    /**
+     * @var Builder $builder
+     */
+    public $builder;
     public Model $model;
     public array $data;
     public string $table;
 
-    public function __construct(BuilderContract $builder, array $data)
+    public function __construct($builder, array $data)
     {
         $this->builder = $builder;
         $this->model = $builder->getModel();
