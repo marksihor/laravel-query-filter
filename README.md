@@ -107,7 +107,7 @@ class from the list. It is easy to add Your own filter:
 - Implement the \LaravelQueryFilter\Filters\FilerInterface interface, and write the logic for the filter;
 - Add the created filter to filters list;
 
-#### Publish the config files (needed if You willing to change configs):
+#### Publish the config files (needed if You're willing to change configs):
 
 ```shell script
 php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterServiceProvider" --tag=config
@@ -121,89 +121,89 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 ## Filter by column (\LaravelQueryFilter\Filters\ColumnValuesFilter::class)
 
-#### Exact match:
+Exact match:
 
 > example.com/api/posts?name=Post1
 
-#### String that contains the substring (surround the serchable string with % character):
+String that contains the substring (surround the serchable string with % character):
 
 > example.com/api/posts?text=%hello%
 
-#### Starts with the substring (put % character to the end of the serchable string):
+Starts with the substring (put % character to the end of the serchable string):
 
 > example.com/api/posts?text=Error%
 
-#### Ends with the substring (put % character to the start of the serchable string):
+Ends with the substring (put % character to the start of the serchable string):
 
 > example.com/api/posts?text=%provident.
 
-#### Json column filter (same syntax to find contains, starts with, ends with):
+Json column filter (same syntax to find contains, starts with, ends with):
 
 > example.com/api/posts?data->name=John
 
 ## Filter by reserved words (\LaravelQueryFilter\Filters\ColumnValuesFilter::class)
 
-#### Records where value is null:
+Records where value is null:
 
 > example.com/api/posts?status=null
 
-#### Records where value is not null:
+Records where value is not null:
 
 > example.com/api/posts?status=notNull
 
-#### Records where date is today:
+Records where date is today:
 
 > example.com/api/posts?created_at=today
 
-#### Records where date is tomorrow:
+Records where date is tomorrow:
 
 > example.com/api/posts?created_at=tomorrow
 
-#### Records where date is yesterday:
+Records where date is yesterday:
 
 > example.com/api/posts?created_at=yesterday
 
-#### Records where date is day beforeyesterday:
+Records where date is day beforeyesterday:
 
 > example.com/api/posts?created_at=day_before_yesterday
 
-#### Records where date is more than or equal current:
+Records where date is more than or equal current:
 
 > example.com/api/posts?created_at=future
 
-#### Records where date is less than or equal current:
+Records where date is less than or equal current:
 
 > example.com/api/posts?created_at=past
 
-#### Records where value is more than or equal to:
+Records where value is more than or equal to:
 
 > example.com/api/posts?likes[from]=100
 
-#### Records where value is less than or equal to:
+Records where value is less than or equal to:
 
 > example.com/api/posts?likes[to]=200
 
-#### Records where value is in the list:
+Records where value is in the list:
 
 > example.com/api/posts?status[in]=active,disabled
 
-#### Records where value is not in the list:
+Records where value is not in the list:
 
 > example.com/api/posts?status[not_in]=active,disabled
 
 ## Ordering (\LaravelQueryFilter\Filters\OrderFilter::class)
 
-#### Order by asc:
+Order by asc:
 
 > example.com/api/posts?orderBy=title&order=asc
 
-#### Order by desc:
+Order by desc:
 
 > example.com/api/posts?orderBy=title&order=desc
 
 ## Selecting columns (\LaravelQueryFilter\Filters\SelectColumnsFilter::class)
 
-#### Select columns by provided comma separated values:
+Select columns by provided comma separated values:
 
 > example.com/api/posts?select=id,title
 
@@ -211,21 +211,21 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 ### Basic
 
-#### Direct relations by providing comma separated relation names:
+Direct relations by providing comma separated relation names:
 
 > example.com/api/posts?with=comments,user
 
-#### Nested relations by providing dot separated relationships structure:
+Nested relations by providing dot separated relationships structure:
 
 > example.com/api/posts?with=comments.user
 
 ### Advanced
 
-#### Direct relations with extra filters (select, order, filter by column):
+Direct relations with extra filters (select, order, filter by column):
 
 > example.com/api/posts?with[comments][select]=id,text,post_id&with[comments][orderBy]=id&with[comments][order]=desc&with[comments][text]=%non%
 
-#### Nested relations with extra filters (select, with):
+Nested relations with extra filters (select, with):
 
 > example.com/api/posts?with[user][with]=comments&with[user][select]=id&with[user][with][comments][select]=id,post_id,user_id&select=id,user_id
 
@@ -233,13 +233,13 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 ### Basic
 
-#### Count direct relations by providing comma separated relation names:
+Count direct relations by providing comma separated relation names:
 
 > example.com/api/posts?withCount=comments,user
 
 ### Advanced
 
-#### Count direct relations by providing relation and additional filters:
+Count direct relations by providing relation and additional filters:
 
 > example.com/api/posts?withCount[comments][user_id]=8
 
@@ -247,14 +247,14 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 ### Basic
 
-#### By providing comma separated relation names:
+By providing comma separated relation names:
 
 > example.com/api/posts?has=comments
 > example.com/api/posts?has=comments.user
 
 ### Advanced
 
-#### By providing relation names with additional filters:
+By providing relation names with additional filters:
 
 > example.com/api/posts?has[comments][id]=20
 
@@ -262,13 +262,13 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 ### Basic
 
-#### By providing comma separated relation names:
+By providing comma separated relation names:
 
 > example.com/api/posts?hasNot=comments
 
 ### Advanced
 
-#### By providing relation names with additional filters:
+By providing relation names with additional filters:
 
 > example.com/api/posts?hasNot[comments][id]=13
 
