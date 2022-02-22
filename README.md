@@ -1,6 +1,6 @@
 ## Laravel Query Filter
 
-<details><summary>Instalation</summary>
+<details><summary>Installation</summary>
 <p>
 
 #### Install the package via composer:
@@ -9,7 +9,7 @@
 composer marksihor/laravel-query-filter
 ```
 
-#### Publish the config files (needed if You willing to change configs):
+#### Publish the config files (needed if You're willing to change configs):
 
 ```shell script
 php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterServiceProvider" --tag=config
@@ -23,8 +23,7 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 
 #### 1. Add "FiltersQueries" trait to Your Controller.php:
 
-```php 
-
+```php
 namespace App\Http\Controllers;
 
 ...
