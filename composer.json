@@ -1,0 +1,35 @@
+{
+  "name": "marksihor/laravel-query-filter",
+  "description": "Laravel Query Filter",
+  "type": "library",
+  "keywords": [
+    "laravel",
+    "php",
+    "eloquent",
+    "filtering"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ihor Korotkyi",
+      "email": "marks.ihor@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^8.0.0",
+    "doctrine/dbal": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelQueryFilter\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LaravelQueryFilter\\LaravelQueryFilterServiceProvider"
+      ]
+    }
+  }
+}
