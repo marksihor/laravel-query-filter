@@ -58,6 +58,10 @@ class ColumnValuesFilter implements FilterInterface
                         if (key_exists('in', $v)) {
                             $filter->builder->whereIn($k, explode(',', $v['in']));
                         }
+
+                        if (key_exists('orderBy', $v) && in_array($v['orderBy'], ['asc', 'desc'])) {
+                            (new FilterPipeline($filter->builder, ['orderBy' => $k, 'order' => $v['orderBy']]));
+                        }
                     }
                 } elseif ($filter->isRelationExists($k) && $filter->isRelationAllowed($k)) {
                     if (is_array($v)) {

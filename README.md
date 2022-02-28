@@ -200,6 +200,10 @@ Order by desc:
 
 > example.com/api/posts?orderBy=title&order=desc
 
+Order asc/desc (old way):
+> example.com/api/posts?id[orderBy]=asc
+> example.com/api/posts?id[orderBy]=desc
+
 ## Selecting columns (\LaravelQueryFilter\Filters\SelectColumnsFilter::class)
 
 Select columns by provided comma separated values:
