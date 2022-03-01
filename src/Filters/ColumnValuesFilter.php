@@ -14,6 +14,8 @@ class ColumnValuesFilter implements FilterInterface
         $skipKeys = ['with', 'select', 'order', 'orderBy', 'withCount', 'has', 'hasNot'];
 
         foreach ($filter->data as $k => $v) {
+            $k = Str::replace('__', '->', $k);
+
             if (!in_array($k, $skipKeys)) {
                 if ($filter->isColumnExist($k)) {
                     if ($v === null) {

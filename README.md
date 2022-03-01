@@ -138,7 +138,8 @@ Ends with the substring (put % character to the start of the serchable string):
 
 Json column filter (same syntax to find contains, starts with, ends with):
 
-> example.com/api/posts?data->name=John
+> example.com/api/posts?data->name=John <br>
+> example.com/api/posts?data__name=John
 
 ## Filter by reserved words (\LaravelQueryFilter\Filters\ColumnValuesFilter::class)
 
