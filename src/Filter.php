@@ -51,7 +51,7 @@ class Filter
 
     public function isColumnJson(string $column): bool
     {
-        return Schema::getColumnType($this->table, $column) === 'json';
+        return in_array(Schema::getColumnType($this->table, $column), ['json', 'text']);
     }
 
     public function getModelSettings(null|string $setting = null): null|array
