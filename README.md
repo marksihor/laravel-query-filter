@@ -118,11 +118,11 @@ php artisan vendor:publish --provider="LaravelQueryFilter\\LaravelQueryFilterSer
 <details><summary>Query Examples</summary>
 <p>
 
-## <span style="color: blue"> Filter by column (\LaravelQueryFilter\Filters\ColumnValuesFilter::class) </span>
+## Filter by column (\LaravelQueryFilter\Filters\ColumnValuesFilter::class)
 
 Exact match:
 
-> <span style="color: green">example.com/api/posts?name=Post1 </span>
+> example.com/api/posts?name=Post1
 
 String that contains the substring (surround the serchable string with % character):
 
