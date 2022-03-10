@@ -6,7 +6,7 @@
 #### Install the package via composer:
 
 ```shell script
-composer marksihor/laravel-query-filter
+composer require marksihor/laravel-query-filter
 ```
 
 #### Publish the config files (needed if You're willing to change configs):
