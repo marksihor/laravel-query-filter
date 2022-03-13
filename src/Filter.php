@@ -60,8 +60,14 @@ class Filter
         if ($configConstraint = config("laravel_query_filter.model_settings." . $this->model::class)) {
             if (is_callable($configConstraint)) {
                 $data = $configConstraint();
-            } else {
+            } elseif (is_array($configConstraint)) {
                 $data = $configConstraint;
+            } elseif (is_string($configConstraint)) {
+                /**
+                 * @var FilterSettingsInterface $instance
+                 */
+                $instance = new $configConstraint;
+                $data = $instance->handle();
             }
         }
 

@@ -2,6 +2,7 @@
 
 return [
     'filters' => [
+        \LaravelQueryFilter\Filters\InitFilter::class,
         \LaravelQueryFilter\Filters\ColumnValuesFilter::class,
         \LaravelQueryFilter\Filters\WithRelationsFilter::class,
         \LaravelQueryFilter\Filters\SelectColumnsFilter::class,

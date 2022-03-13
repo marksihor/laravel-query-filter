@@ -92,7 +92,9 @@ Model settings options (if not provided - the check will not be performed):
         \App\Models\User::class => [
             'columns' => ['id', 'name', 'email'],
             'relations' => []
-        ]
+        ],
+        // class based setting, mast implement FilterSettingsInterface
+        \App\Models\Customer::class => \App\Http\Filters\CustomerFilterSettings::class
     ]
 ]
 ```
