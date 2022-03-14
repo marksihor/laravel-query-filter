@@ -51,6 +51,15 @@ class ColumnValuesFilter implements FilterInterface
                             $filter->builder->where($k, '>=', $v['from']);
                         } elseif (key_exists('to', $v)) {
                             $filter->builder->where($k, '<=', $v['to']);
+                        } elseif (key_exists('between', $v) && Str::contains($v['between'], ',')) {
+                            $between = explode(',', $v['between']);
+                            if ($between[0] && $between[1]) {
+                                $filter->builder->whereBetween($k, [$between[0], $between[1]]);
+                            } elseif ($between[0]) {
+                                $filter->builder->where($k, '>=', $between[0]);
+                            } elseif ($between[1]) {
+                                $filter->builder->where($k, '<=', $between[1]);
+                            }
                         }
 
                         if (key_exists('not_in', $v)) {

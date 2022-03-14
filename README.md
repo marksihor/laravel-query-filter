@@ -185,6 +185,10 @@ Records where value is less than or equal to:
 
 > example.com/api/posts?likes[to]=200
 
+Records where value is between range:
+
+> example.com/api/posts?likes[between]=100,200
+
 Records where value is in the list:
 
 > example.com/api/posts?status[in]=active,disabled
