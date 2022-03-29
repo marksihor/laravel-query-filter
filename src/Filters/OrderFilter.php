@@ -14,7 +14,9 @@ class OrderFilter implements FilterInterface
             key_exists('orderBy', $filter->data) and
             in_array($filter->data['order'], ['asc', 'desc'])
         ) {
-            $filter->builder->orderBy($filter->data['orderBy'], $filter->data['order']);
+            if ($filter->isColumnExist($filter->data['orderBy'])) {
+                $filter->builder->orderBy($filter->data['orderBy'], $filter->data['order']);
+            }
         }
 
         return $next($filter);
