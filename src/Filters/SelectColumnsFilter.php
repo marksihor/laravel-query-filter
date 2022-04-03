@@ -21,7 +21,9 @@ class SelectColumnsFilter implements FilterInterface
                     }
                 }
 
-                if (count($select)) $filter->builder->select($select);
+                if (count($select)) $filter->builder->select(array_map(function ($item) use ($filter) {
+                    return $filter->getPrefix() . $item;
+                }, $select));
             } elseif (is_array($select)) {
                 foreach ($select as $relation => $columns)
                     (new FilterPipeline($filter->builder, [

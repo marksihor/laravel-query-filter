@@ -73,4 +73,9 @@ class Filter
 
         return $setting ? ($data[$setting] ?? null) : $data;
     }
+
+    public function getPrefix(): string
+    {
+        return $this->table ? $this->table . '.' : '';
+    }
 }
