@@ -12,7 +12,9 @@ class SelectColumnsFilter implements FilterInterface
     {
         if ($select = $filter->data['select'] ?? null) {
             if (is_string($select)) {
-                $select = array_filter(explode(',', $select));
+                $select = array_filter(explode(',', $select), function ($column) use ($filter) {
+                    return $filter->isColumnExist($column);
+                });
                 if ($allowedColumns = $filter->getModelSettings('columns')) {
                     if (count($select)) {
                         $select = array_intersect($select, $allowedColumns);

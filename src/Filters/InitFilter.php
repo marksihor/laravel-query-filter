@@ -11,6 +11,10 @@ class InitFilter implements FilterInterface
     {
         // to select only allowed columns if SelectColumnsFilter is not triggered
         if (!($filter->data['select'] ?? null) && ($allowedColumns = $filter->getModelSettings('columns'))) {
+            $allowedColumns = array_filter($allowedColumns, function ($column) use ($filter) {
+                return $filter->isColumnExist($column);
+            });
+
             if (count($allowedColumns)) $filter->builder->select(array_map(function ($item) use ($filter) {
                 return $filter->getPrefix() . $item;
             }, $allowedColumns));
