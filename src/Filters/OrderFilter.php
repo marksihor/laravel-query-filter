@@ -2,8 +2,9 @@
 
 namespace LaravelQueryFilter\Filters;
 
-use LaravelQueryFilter\Filter;
 use Closure;
+use Illuminate\Support\Str;
+use LaravelQueryFilter\Filter;
 
 class OrderFilter implements FilterInterface
 {
@@ -14,8 +15,9 @@ class OrderFilter implements FilterInterface
             key_exists('orderBy', $filter->data) and
             in_array($filter->data['order'], ['asc', 'desc'])
         ) {
-            if ($filter->isColumnExist($filter->data['orderBy'])) {
-                $filter->builder->orderBy($filter->data['orderBy'], $filter->data['order']);
+            $k = Str::replace('__', '->', $filter->data['orderBy']);
+            if ($filter->isColumnExist($k)) {
+                $filter->builder->orderBy($k, $filter->data['order']);
             }
         }
 

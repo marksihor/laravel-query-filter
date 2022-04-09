@@ -207,6 +207,11 @@ Order by desc:
 
 > example.com/api/posts?orderBy=title&order=desc
 
+Order by json column:
+
+> example.com/api/posts?orderBy=data__key&order=desc
+> example.com/api/posts?orderBy=data->key&order=asc
+
 Order asc/desc (old way):
 > example.com/api/posts?id[orderBy]=asc <br>
 > example.com/api/posts?id[orderBy]=desc
