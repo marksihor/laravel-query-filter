@@ -32,7 +32,7 @@ class WithRelationsFilter implements FilterInterface
             foreach ($with as $relation => $filters) {
                 if ($filter->isRelationExists($relation) && $filter->isRelationAllowed($relation)) {
                     $filter->builder->with($relation, function ($query) use ($filter, $filters) {
-                        (new FilterPipeline($query, $filters ?: []));
+                        (new FilterPipeline($query, is_array($filters) ? $filters : []));
                     });
                 }
             }
