@@ -3,6 +3,7 @@
 namespace LaravelQueryFilter\Filters;
 
 use Closure;
+use Illuminate\Support\Str;
 use LaravelQueryFilter\Filter;
 use LaravelQueryFilter\FilterPipeline;
 
@@ -15,7 +16,7 @@ class WithRelationsFilter implements FilterInterface
         if (is_string($with)) {
             foreach (explode(',', $with) as $item) {
                 $relations = explode('.', $item);
-                $relation = array_shift($relations);
+                $relation = Str::camel(array_shift($relations));
                 $subRelations = $relations;
 
                 if ($filter->isRelationExists($relation) && $filter->isRelationAllowed($relation)) {
