@@ -26,7 +26,14 @@ trait FiltersQueries
     {
         $data = $data ?: request()->all();
         if (count($cacheTags)) {
-            $cacheKey = md5($builder->toSql() . json_encode($data) . json_encode($additionalData) . json_encode(['per_page' => $perPage]) . intval($paginate));
+            $cacheKey = md5(
+                $builder->toSql() .
+                json_encode($data) .
+                json_encode($additionalData) .
+                json_encode(['per_page' => $perPage]) .
+                intval($paginate) .
+                request()->url()
+            );
             return Cache::tags($cacheTags)->remember($cacheKey, $cacheSeconds, function () use ($builder, $data, $perPage, $paginate, $cacheKey) {
                 if ($paginate) {
                     return (new FilterPipeline($builder, $data))->filter()->builder->paginate($perPage);
