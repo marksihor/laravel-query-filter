@@ -31,6 +31,7 @@ class WithRelationsFilter implements FilterInterface
             }
         } elseif (is_array($with)) {
             foreach ($with as $relation => $filters) {
+                $relation = Str::camel($relation);
                 if ($filter->isRelationExists($relation) && $filter->isRelationAllowed($relation)) {
                     $filter->builder->with($relation, function ($query) use ($filter, $filters) {
                         (new FilterPipeline($query, is_array($filters) ? $filters : []));

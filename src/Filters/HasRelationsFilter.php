@@ -3,6 +3,7 @@
 namespace LaravelQueryFilter\Filters;
 
 use Closure;
+use Illuminate\Support\Str;
 use LaravelQueryFilter\Filter;
 use LaravelQueryFilter\FilterPipeline;
 
@@ -15,7 +16,7 @@ class HasRelationsFilter implements FilterInterface
         if (is_string($has)) {
             foreach (explode(',', $has) as $item) {
                 $relations = explode('.', $item);
-                $relation = array_shift($relations);
+                $relation = Str::camel(array_shift($relations));
                 $subRelations = $relations;
 
                 if ($filter->isRelationExists($relation) && $filter->isRelationAllowed($relation)) {
@@ -30,6 +31,7 @@ class HasRelationsFilter implements FilterInterface
             }
         } elseif (is_array($has)) {
             foreach ($has as $relation => $filters) {
+                $relation = Str::camel($relation);
                 if ($filter->isRelationExists($relation) && $filter->isRelationAllowed($relation)) {
                     $filter->builder->whereHas($relation, function ($query) use ($filters) {
                         (new FilterPipeline($query, $filters));
