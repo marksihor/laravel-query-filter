@@ -10,6 +10,7 @@ return [
         \LaravelQueryFilter\Filters\WithCountRelationsFilter::class,
         \LaravelQueryFilter\Filters\HasRelationsFilter::class,
         \LaravelQueryFilter\Filters\HasNotRelationsFilter::class,
+        \LaravelQueryFilter\Filters\LimitRecordsFilter::class,
     ],
     'model_settings' => [
 //        \App\Models\Post::class => function () {
