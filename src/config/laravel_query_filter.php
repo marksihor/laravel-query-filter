@@ -12,7 +12,6 @@ return [
         \LaravelQueryFilter\Filters\HasNotRelationsFilter::class,
         \LaravelQueryFilter\Filters\LimitRecordsFilter::class,
     ],
-    'use_prefixes_on_select' => false, // when true: select on morph relations breaks the sql query (wrong table selected)
     'model_settings' => [
 //        \App\Models\Post::class => function () {
 //            return [

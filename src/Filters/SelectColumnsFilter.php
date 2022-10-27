@@ -24,11 +24,7 @@ class SelectColumnsFilter implements FilterInterface
                 }
 
                 if (count($select)) $filter->builder->select(array_map(function ($item) use ($filter) {
-                    if (config('laravel_query_filter.use_prefixes_on_select')) {
-                        return $filter->getPrefix() . $item;
-                    } else {
-                        return $item;
-                    }
+                    return $filter->getPrefix() . $item;
                 }, $select));
             } elseif (is_array($select)) {
                 foreach ($select as $relation => $columns)
