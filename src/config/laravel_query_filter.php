@@ -8,6 +8,7 @@ return [
         \LaravelQueryFilter\Filters\SelectColumnsFilter::class,
         \LaravelQueryFilter\Filters\OrderFilter::class,
         \LaravelQueryFilter\Filters\WithCountRelationsFilter::class,
+        \LaravelQueryFilter\Filters\WithSumRelationsFilter::class,
         \LaravelQueryFilter\Filters\HasRelationsFilter::class,
         \LaravelQueryFilter\Filters\HasNotRelationsFilter::class,
         \LaravelQueryFilter\Filters\LimitRecordsFilter::class,

@@ -238,11 +238,13 @@ Nested relations by providing dot separated relationships structure:
 
 Direct relations with extra filters (select, order, filter by column):
 
-> example.com/api/posts?with[comments][select]=id,text,post_id&with[comments][orderBy]=id&with[comments][order]=desc&with[comments][text]=%non%
+> example.com/api/posts?with[comments][select]=id,text,post_id&with[comments][orderBy]=id&with[comments][order]
+> =desc&with[comments][text]=%non%
 
 Nested relations with extra filters (select, with):
 
-> example.com/api/posts?with[user][with]=comments&with[user][select]=id&with[user][with][comments][select]=id,post_id,user_id&select=id,user_id
+> example.com/api/posts?with[user][with]=comments&with[user][select]=id&with[user][with][comments][select]
+> =id,post_id,user_id&select=id,user_id
 
 ## With count relationships (\LaravelQueryFilter\Filters\WithCountRelationsFilter::class)
 
@@ -257,6 +259,14 @@ Count direct relations by providing comma separated relation names:
 Count direct relations by providing relation and additional filters:
 
 > example.com/api/posts?withCount[comments][user_id]=8
+
+> ## With sum relationships (\LaravelQueryFilter\Filters\WithSumRelationsFilter::class)
+
+### Basic
+
+Sum direct relations by providing comma separated relation names and columns:
+
+> example.com/api/customers?withSum=payments.total,payments_paid.total
 
 ## Retrieving records that has relations (\LaravelQueryFilter\Filters\HasRelationsFilter::class)
 
