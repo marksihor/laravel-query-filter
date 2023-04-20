@@ -74,11 +74,14 @@ class ColumnValuesFilter implements FilterInterface
                             (new FilterPipeline($filter->builder, ['orderBy' => $k, 'order' => $v['orderBy']]));
                         }
                     }
-                } elseif ($filter->isRelationExists($k) && $filter->isRelationAllowed($k)) {
-                    if (is_array($v)) {
-                        $filter->builder->whereHas($k, function ($query) use ($v) {
-                            (new FilterPipeline($query, $v));
-                        });
+                } else {
+                    $relationshipName = Str::camel($k);
+                    if ($filter->isRelationExists($relationshipName) && $filter->isRelationAllowed($relationshipName)) {
+                        if (is_array($v)) {
+                            $filter->builder->whereHas($relationshipName, function ($query) use ($v) {
+                                (new FilterPipeline($query, $v));
+                            });
+                        }
                     }
                 }
             }
