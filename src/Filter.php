@@ -16,6 +16,7 @@ class Filter
     public Model $model;
     public array $data;
     public string $table;
+    public ?array $filterableColumns;
 
     public function __construct($builder, array $data)
     {
@@ -23,6 +24,7 @@ class Filter
         $this->model = $builder->getModel();
         $this->data = $data;
         $this->table = $this->model->getTable();
+        $this->filterableColumns = property_exists($this->model, 'filterableColumns') ? $this->model->filterableColumns : null;
     }
 
     public function isRelationExists(string $relation): bool
@@ -41,16 +43,24 @@ class Filter
 
     public function isColumnExist(string $column): bool
     {
+        $columnExists = function ($column): bool {
+            if ($this->filterableColumns) return in_array($column, $this->filterableColumns);
+            else return Schema::hasColumn($this->table, $column);
+        };
+
         if (Str::contains($column, '->')) {
             $column = explode('->', $column)[0];
-            return Schema::hasColumn($this->table, $column) and $this->isColumnJson($column);
+            return $columnExists($column) and $this->isColumnJson($column);
         }
 
-        return Schema::hasColumn($this->table, $column);
+        return $columnExists($column);
     }
 
     public function isColumnJson(string $column): bool
     {
+        $cast = $this->model->getCasts()[$column] ?? null;
+        if (in_array($cast, ['array', 'json'])) return true;
+
         return in_array(Schema::getColumnType($this->table, $column), ['json', 'text']);
     }
 

@@ -56,6 +56,19 @@ class PostController extends Controller
 }
 ```
 
+#### #### 3. Add public array $filterableColumns = [];  // (it can improve querying speed by not using:  Schema::hasColumn($table, $column) for checking column existence)
+
+```php
+namespace App\Models;
+
+...
+
+class Post extends Model
+{
+    public array $filterableColumns = ['id', 'name', 'created_at', 'etc...'];
+}
+```
+
 </p>
 </details>
 
