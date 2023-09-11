@@ -48,9 +48,9 @@ class ColumnValuesFilter implements FilterInterface
                         if (key_exists('from', $v) and key_exists('to', $v)) {
                             $filter->builder->whereBetween($columnWithTablePrefix, [$v['from'], $v['to']]);
                         } elseif (key_exists('from', $v)) {
-                            $filter->builder->where($columnWithTablePrefix, '>=', $v['from']);
+                            $filter->builder->where($columnWithTablePrefix, '>=', $v['from'])->whereNotNull($columnWithTablePrefix);
                         } elseif (key_exists('to', $v)) {
-                            $filter->builder->where($columnWithTablePrefix, '<=', $v['to']);
+                            $filter->builder->where($columnWithTablePrefix, '<=', $v['to'])->whereNotNull($columnWithTablePrefix);
                         } elseif (key_exists('between', $v) && Str::contains($v['between'], ',')) {
                             $between = explode(',', $v['between']);
                             if ($between[0] && $between[1]) {
