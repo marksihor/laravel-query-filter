@@ -39,6 +39,9 @@ class ColumnValuesFilter implements FilterInterface
                             } elseif ($v === 'past') {
                                 $filter->builder->where($columnWithTablePrefix, '<=', now());
                             }
+                        } elseif (Str::startsWith($v, '%%') or Str::endsWith($v, '%%')) {
+                            // for postgres, cockroach, etc
+                            $filter->builder->where($columnWithTablePrefix, 'ilike', $v);
                         } elseif (Str::startsWith($v, '%') or Str::endsWith($v, '%')) {
                             $filter->builder->where($columnWithTablePrefix, 'like', $v);
                         } else {
