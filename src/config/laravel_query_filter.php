@@ -12,6 +12,7 @@ return [
         \LaravelQueryFilter\Filters\HasRelationsFilter::class,
         \LaravelQueryFilter\Filters\HasNotRelationsFilter::class,
         \LaravelQueryFilter\Filters\LimitRecordsFilter::class,
+        \LaravelQueryFilter\Filters\WithScopesFilter::class,
     ],
     'model_settings' => [
 //        \App\Models\Post::class => function () {
