@@ -73,6 +73,34 @@ class ColumnValuesFilter implements FilterInterface
                             $filter->builder->whereIn($columnWithTablePrefix, explode(',', $v['in']));
                         }
 
+                        if (key_exists('in_set', $v)) {
+                            $items = explode(',', $v['in_set']);
+                            if (count($items) == 1) {
+                                $filter->builder->whereRaw("FIND_IN_SET(?, " . $columnWithTablePrefix . ")", $items);
+                            } elseif (count($items) > 1) {
+                                $filter->builder->where(function ($query) use ($columnWithTablePrefix, $items) {
+                                    foreach ($items as $index => $item) {
+                                        if ($index) {
+                                            $query->orWhereRaw("FIND_IN_SET(?, " . $columnWithTablePrefix . ")", [$item]);
+                                        } else {
+                                            $query->whereRaw("FIND_IN_SET(?, " . $columnWithTablePrefix . ")", [$item]);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+
+                        if (key_exists('in_set_all', $v)) {
+                            $items = explode(',', $v['in_set_all']);
+                            if (count($items) == 1) {
+                                $filter->builder->whereRaw("FIND_IN_SET(?, " . $columnWithTablePrefix . ")", $items);
+                            } elseif (count($items) > 1) {
+                                foreach ($items as $index => $item) {
+                                    $filter->builder->whereRaw("FIND_IN_SET(?, " . $columnWithTablePrefix . ")", [$item]);
+                                }
+                            }
+                        }
+
                         if (key_exists('orderBy', $v) && in_array($v['orderBy'], ['asc', 'desc'])) {
                             (new FilterPipeline($filter->builder, ['orderBy' => $k, 'order' => $v['orderBy']]));
                         }
